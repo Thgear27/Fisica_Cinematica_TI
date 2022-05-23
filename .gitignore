@@ -1,9 +1,5 @@
 *.o
-/bin
-/obj
-/lib
-/include
-*.dll
 imgui.ini
 *.a
+*.exe
 
