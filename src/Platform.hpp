@@ -10,11 +10,13 @@ public:
     ~Platform();
 
     void Render(sf::RenderWindow& l_window);
+    void Move(float dx, float dy);
 
-    Colider GetCollider();
+    Colider* GetCollider();
 
 private:
     sf::RectangleShape body;    
+    Colider collider;
 };
 
 #endif // PLATFORM_H

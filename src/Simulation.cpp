@@ -3,7 +3,8 @@
 
 Simulation::Simulation()
     : m_window("Simulacion de Cinematica", sf::Vector2u(800, 600)),
-      floor(sf::Color::White, sf::Vector2f(0, 0), sf::Vector2f(30, 30)) {
+      floor(sf::Color::White, sf::Vector2f(0, 0), sf::Vector2f(30, 30)),
+      other(sf::Color::White, sf::Vector2f(500, 500), sf::Vector2f(40, 40)) {
     m_elapsed_fixedTime = 0.0f;
     // m_window.GetRenderWindow()->setFramerateLimit(60);
 }
@@ -13,13 +14,13 @@ Simulation::~Simulation() {}
 void Simulation::HandleInput() {
     m_window.Update();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        std::cout << "UP\n";
+        floor.Move(0.0f, -50.0f * m_elapsed.asSeconds());
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        std::cout << "DOWN\n";
+        floor.Move(0.0f, 50.0f * m_elapsed.asSeconds());
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        std::cout << "LEFT\n";
+        floor.Move(-50.0f * m_elapsed.asSeconds(), 0.0f);
     } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        std::cout << "RIGHT\n";
+        floor.Move(50.0f * m_elapsed.asSeconds(), 0.0f);
     }
 }
 
@@ -28,12 +29,14 @@ void Simulation::Update() {
 
     if (m_elapsed_fixedTime >= timestep) {
         m_elapsed_fixedTime -= timestep;
+        floor.GetCollider()->CheckColision(*other.GetCollider(), 0.0f);
     }
 }
 
 void Simulation::Render() {
     m_window.BeginDraw();
-    floor.Render(*m_window.GetRenderWin dow());
+    floor.Render(*m_window.GetRenderWindow());
+    other.Render(*m_window.GetRenderWindow());
     m_window.EndDraw();
 }
 
