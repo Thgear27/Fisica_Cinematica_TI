@@ -1,7 +1,9 @@
 #include "Simulation.hpp"
 #include <iostream>
 
-Simulation::Simulation() : m_window("Simulacion de Cinematica", sf::Vector2u(800, 600)) {
+Simulation::Simulation()
+    : m_window("Simulacion de Cinematica", sf::Vector2u(800, 600)),
+      floor(sf::Color::White, sf::Vector2f(0, 0), sf::Vector2f(30, 30)) {
     m_elapsed_fixedTime = 0.0f;
     // m_window.GetRenderWindow()->setFramerateLimit(60);
 }
@@ -31,6 +33,7 @@ void Simulation::Update() {
 
 void Simulation::Render() {
     m_window.BeginDraw();
+    floor.Render(*m_window.GetRenderWin dow());
     m_window.EndDraw();
 }
 

@@ -2,6 +2,7 @@
 #define SIMULATION_H
 
 #include "Window.hpp"
+#include "Platform.hpp"
 
 class Simulation {
 public:
@@ -15,6 +16,10 @@ public:
     sf::Time getElapsedTime();
     void RestartClock();
 
+    /// Member functions added
+    /////////////////////////////////////////////////////////////
+    
+    /////////////////////////////////////////////////////////////
 private:
     sf::Clock m_clock;
 
@@ -23,6 +28,10 @@ private:
 
     Window m_window;
     const double framesPerSecond { 60 };
+    /// Objets added
+    /////////////////////////////////////////////////////////////
+    Platform floor;
+    /////////////////////////////////////////////////////////////
 };
 
-#endif //SIMULATION_H
+#endif // SIMULATION_H
