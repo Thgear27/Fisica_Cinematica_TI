@@ -3,6 +3,7 @@
 
 #include "Window.hpp"
 #include "Platform.hpp"
+#include "FallingObj.hpp"
 
 class Simulation {
 public:
@@ -27,12 +28,12 @@ private:
     float m_elapsed_fixedTime = 0.0f;
 
     Window m_window;
-    const double framesPerSecond { 60 };
+    const double framesPerSecond { 120 };
     
     /// Objets added
     /////////////////////////////////////////////////////////////
-    Platform floor;
-    Platform other;
+    Platform m_floor;
+    FallingObj m_ball;
     /////////////////////////////////////////////////////////////
 };
 
