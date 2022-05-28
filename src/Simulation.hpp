@@ -26,9 +26,11 @@ private:
 
     sf::Time m_elapsed;
     float m_elapsed_fixedTime = 0.0f;
+    float m_elapsed_fixedTime_render = 0.0f;
+    float m_elapsed_fixedTime_printer = 0.0f;
 
     Window m_window;
-    const double framesPerSecond { 120 };
+    const float framesPerSecond { 60 };
     
     /// Objets added
     /////////////////////////////////////////////////////////////

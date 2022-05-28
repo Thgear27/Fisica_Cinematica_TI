@@ -21,27 +21,26 @@ void FallingObj::Render(sf::RenderWindow& l_window) {
 }
 
 void FallingObj::Move(float dx, float dy) {
-    // m_body.move(dx, dy);
     m_body_collider.move(dx, dy);
 }
 
-void FallingObj::UpdateYPosition(float l_aceleration) {
-    // float Yo = m_body.getPosition().y;
+void FallingObj::UpdateYPosition() {
     const float time { 1 };
-    float Dy = m_velocity * time + (0.5f) * l_aceleration * time;
+    float Dy = m_velocity * time + (0.5f) * m_gravity * time;
     Move(0, Dy);
 }
 
-void FallingObj::UpdateVelocity(float l_aceleration) {
+void FallingObj::UpdateVelocity() {
     const float time { 1 };
-    m_velocity = m_velocity + l_aceleration * time;
+    m_velocity = m_velocity + m_gravity * time;
 }
 
-// sf::Vector2f FallingObj::GetPosition() {
-//     return m_body.getPosition();
-// }
-void FallingObj::setVelocity(float l_velocity) {
-    m_velocity = l_velocity;
+void FallingObj::setVelocity(float l_velocity) { m_velocity = l_velocity; }
+float FallingObj::getVelocity() const { return m_velocity; }
+void FallingObj::setGravity(float l_gravity) { m_gravity = l_gravity; }
+float FallingObj::getGravity() const { return m_gravity; }
+void FallingObj::setPosition(sf::Vector2f pos) {
+    m_body_collider.setPosition(pos);
 }
 
 Colider* FallingObj::GetCollider() { return &m_collider; }
