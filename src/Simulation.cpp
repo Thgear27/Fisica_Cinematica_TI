@@ -7,17 +7,16 @@ Simulation::Simulation()
       m_ball(sf::Color(204.0f, 77.0f, 5.0f), sf::Vector2f(500, 400),
              sf::Vector2f(30, 30)) {
     m_elapsed_fixedTime = 0.0f;
+    m_elapsed_fixedTime_render = 0.0f;
 }
 
-Simulation::~Simulation() {}
+Simulation::~Simulation() {} // No hace falta liberar memoria
 
 void Simulation::HandleInput() {
     const float vel = 300.0f;
     m_window.Update();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_ball.setVelocity(-20.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         m_ball.Move(-vel * m_elapsed.asSeconds(), 0.0f);
@@ -40,16 +39,18 @@ void Simulation::HandleInput() {
         m_ball.setGravity(2.0f);
         m_ball.setPosition(sf::Vector2f(500, 400));
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)) {
+        m_ball.setGravity(3.0f);
+        m_ball.setPosition(sf::Vector2f(500, 400));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)) {
+        m_ball.setGravity(4.0f);
+        m_ball.setPosition(sf::Vector2f(500, 400));
+    }
 }
 
 void Simulation::Update() {
     float timestep = 1.0f / framesPerSecond;
-    float timestep_printer = 1.0f / 2.0f;
-
-    if (m_elapsed_fixedTime_printer >= timestep_printer) {
-        m_elapsed_fixedTime_printer -= timestep_printer;
-        std::cout << m_ball.getGravity() << '\n';
-    }
 
     static bool collsionDetected { false };
 
@@ -91,5 +92,5 @@ void Simulation::RestartClock() {
     m_elapsed = m_clock.restart();
     m_elapsed_fixedTime_render += m_elapsed.asSeconds();
     m_elapsed_fixedTime += m_elapsed.asSeconds();
-    m_elapsed_fixedTime_printer += m_elapsed.asSeconds();
+    // m_elapsed_fixedTime_printer += m_elapsed.asSeconds();
 }

@@ -26,7 +26,7 @@ void FallingObj::Move(float dx, float dy) {
 
 void FallingObj::UpdateYPosition() {
     const float time { 1 };
-    float Dy = m_velocity * time + (0.5f) * m_gravity * time;
+    float Dy = m_velocity * time + (0.5f) * m_gravity * time * time;
     Move(0, Dy);
 }
 

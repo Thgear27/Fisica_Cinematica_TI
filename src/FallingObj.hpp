@@ -19,8 +19,6 @@ public:
     float getGravity() const;
     void setPosition(sf::Vector2f pos);
 
-    // sf::Vector2f GetPosition();
-
     void Move(float dx, float dy);
 
     Colider* GetCollider();
