@@ -4,8 +4,10 @@
 Simulation::Simulation()
     : m_window("Simulacion de Cinematica", sf::Vector2u(800, 600)),
       m_floor(sf::Color::White, sf::Vector2f(400, 500), sf::Vector2f(600, 30)),
-      m_ball(sf::Color(204.0f, 77.0f, 5.0f), sf::Vector2f(500, 400),
-             sf::Vector2f(30, 30)) {
+      m_ball(sf::Color(204.0f, 77.0f, 5.0f), sf::Vector2f(500, 400), sf::Vector2f(30, 30)),
+      m_vvGravity(sf::Vector2f(10.0f, 10.0f), "Gravedad: "),
+      m_vvVelocity(sf::Vector2f(10.0f, 30.0f), "Velocidad: ")
+{
     m_elapsed_fixedTime = 0.0f;
     m_elapsed_fixedTime_render = 0.0f;
 }
@@ -80,6 +82,8 @@ void Simulation::Render() {
         m_window.BeginDraw();
         m_floor.Render(*m_window.GetRenderWindow());
         m_ball.Render(*m_window.GetRenderWindow());
+        m_vvGravity.render(m_ball.getGravity(), *m_window.GetRenderWindow());
+        m_vvVelocity.render(m_ball.getVelocity(), *m_window.GetRenderWindow());
         m_window.EndDraw();
     }
 }

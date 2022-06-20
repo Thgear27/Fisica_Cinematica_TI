@@ -4,6 +4,7 @@
 #include "FallingObj.hpp"
 #include "Platform.hpp"
 #include "Window.hpp"
+#include "Text.hpp"
 
 // Definicion de la clase Simulation
 class Simulation {
@@ -32,6 +33,8 @@ private:
     /////////////////////////////////////////////////////////////
     Platform m_floor;  // El suelo de la simulacion
     FallingObj m_ball; // EL objeto que cae en la simulacion
+    Text m_vvGravity;
+    Text m_vvVelocity;
     /////////////////////////////////////////////////////////////
 };
 
